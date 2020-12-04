@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mb-5">
         <h1>{{ message }}</h1>
         <button class="btn btn-primary" v-on:click="showMessage()">Click me</button>
     </div>

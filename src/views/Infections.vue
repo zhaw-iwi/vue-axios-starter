@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <h1 class="mt-3">List of all Infections</h1>
     <table class="table">
       <thead>
@@ -23,10 +23,10 @@
             {{ infection.time }}
           </td>
           <td>
-            {{ infection.pathogen_id }}
+            {{ infection.pathogen.id }}
           </td>
           <td>
-            {{ infection.person_id }}
+            {{ infection.person.id }}
           </td>
         </tr>
       </tbody>
@@ -36,26 +36,23 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
-      infections: [
-        {
-          id: 1,
-          location: "Strömstad",
-          time: 1585648613,
-          pathogen_id: 33,
-          person_id: 9,
-        },
-        {
-          id: 2,
-          location: "Al Bāţinah",
-          time: 1580206932,
-          pathogen_id: 19,
-          person_id: 10,
-        },
-      ],
+      infections: [],
     };
+  },
+  mounted: function () {
+    this.getInfections();
+  },
+  methods: {
+    getInfections: function () {
+      axios.get("http://localhost:8080/infections/infections").then((response) => {
+        this.infections = response.data;
+      });
+    },
   },
 };
 </script>

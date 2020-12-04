@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <div style="text-align: center">
       <img class="img-fluid" alt="Vue logo" src="../assets/logo.png" />
     </div>

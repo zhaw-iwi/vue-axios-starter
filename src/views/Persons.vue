@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <h1 class="mt-3">List of all Persons</h1>
     <table class="table">
       <thead>
@@ -30,22 +30,23 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
-      persons: [
-        {
-          id: 1,
-          name: "Myles Popley",
-          birthdate: 372019027,
-        },
-        {
-          id: 2,
-          name: "Reine Steers",
-          birthdate: 1056149025,
-        },
-      ],
+      persons: [],
     };
+  },
+  mounted: function () {
+    this.getPersons();
+  },
+  methods: {
+    getPersons: function () {
+      axios.get("http://localhost:8080/infections/persons").then((response) => {
+        this.persons = response.data;
+      });
+    },
   },
 };
 </script>

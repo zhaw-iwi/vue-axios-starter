@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <h1 class="mt-3">Add a person</h1>
 
     <form>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -29,11 +31,19 @@ export default {
     };
   },
   methods: {
-    addPerson() {
-      console.log("adding person: " + JSON.stringify(this.person));
+    addPerson: function() {
+      axios
+        .post("http://localhost:8080/infections/persons", this.person)
+        .then((response) => {
+          alert("Person added");
+          console.log(response.data);
 
-      // reset input fields
-      this.person = {};
+          // reset input fields
+          this.person = {};
+
+          // uncomment the following line if you want to redirect to /persons
+          //this.$router.push("/persons");
+        });
     },
   },
 };

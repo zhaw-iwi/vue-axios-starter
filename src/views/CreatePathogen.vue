@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <h1 class="mt-3">Add a pathogen</h1>
 
     <form>
@@ -29,7 +29,10 @@ export default {
     };
   },
   methods: {
-    addPathogen() {
+    addPathogen: function() {
+
+      // TODO: POST with axios (like in CreatePerson.vue)
+
       console.log("adding pathogen: " + JSON.stringify(this.pathogen));
 
       // reset input fields

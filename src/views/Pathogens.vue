@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <h1 class="mt-3">List of all Pathogens</h1>
     <table class="table">
       <thead>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -37,18 +39,14 @@ export default {
     };
   },
   mounted: function () {
-    this.pathogens = [
-      {
-        id: 1,
-        icd10: "Y36450S",
-        incubation: 17,
-      },
-      {
-        id: 2,
-        icd10: "T84318A",
-        incubation: 5,
-      },
-    ];
+    this.getPathogens();
+  },
+  methods: {
+    getPathogens: function () {
+      axios.get("http://localhost:8080/infections/pathogens").then((response) => {
+        this.pathogens = response.data;
+      });
+    },
   },
 };
 </script>
